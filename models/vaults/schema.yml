@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: hub_account
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - ACC_ID
+    columns:
+      - name: ACCOUNT_HK
+        tests:
+          - not_null
+      - name: ACC_ID
+        tests:
+          - not_null
+
+
+  - name: link_transaction
+    columns:
+      - name: FROM_ACCOUNT_HK
+        tests:
+          - relationships:
+              arguments:
+                to: ref('hub_account')
+                field: ACCOUNT_HK
+      - name: TO_ACCOUNT_HK
+        tests:
+          - relationships:
+              arguments:
+                to: ref('hub_account')
+                field: ACCOUNT_HK
+  - name: sat_account_details
+    columns:
+      - name: ACCOUNT_HK
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('hub_account')
+                field: ACCOUNT_HK
+      - name: ACCOUNT_HASHDIFF
+        tests:
+          - not_null
+      - name: LOAD_DATETIME
+        tests:
+          - not_null
+      - name: RECORD_SOURCE
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['CORE_BANKING']
