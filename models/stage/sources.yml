@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw_banking
-    database: DBT_DATAVAULT    
+    database: DBT_DV   
     schema: RAW
     tables:
       - name: RAW_BANK_ACCOUNTS

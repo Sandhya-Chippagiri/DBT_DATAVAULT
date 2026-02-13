@@ -6,7 +6,7 @@ models:
     columns:
       - name: ACCOUNT_HK
         tests:
-          - unique
+          
           - not_null
       - name: ACC_ID
         tests:

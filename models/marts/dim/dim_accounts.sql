@@ -10,7 +10,7 @@ WITH latest_acc_sat AS (
     SELECT 
         ACCOUNT_HK,
         ACC_HOLDER_NAME,
-        DBT_DATAVAULT.UDF.ToUpperCase(ACC_TYPE) AS ACCOUNT_TYPE,
+        DBT_DV.VAULT.ToUpperCase(ACC_TYPE) AS ACCOUNT_TYPE,
         OPEN_DATE,
         CUSTOMER_ID,
         LOAD_DATETIME,
